@@ -3,7 +3,7 @@ import Home from "./Copmponents/Home"
 import ChatPage from "./Copmponents/ChatPage";
 import socketIO from "socket.io-client"
 
-const socket = socketIO.connect("http://localhost:4000")
+const socket = socketIO.connect("https://chat-app-server-care.onrender.com/");
 function App() {
   return (
     <BrowserRouter>
