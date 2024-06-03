@@ -5,7 +5,7 @@ const http = require('http').Server(app);
 const PORT = 4000
 const socketIO = require('socket.io')(http, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: "https://chat-app-soketio.vercel.app/"
     }
 });
 
@@ -34,6 +34,9 @@ socketIO.on('connection', (socket) => {
       socket.disconnect()
     });
 });
+app.get('/',(req,res)=>{
+  res.send("Server Running");
+})
 
 app.get("/api", (req, res) => {
   res.json({message: "Hello"})
