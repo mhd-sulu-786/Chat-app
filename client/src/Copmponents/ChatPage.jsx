@@ -10,16 +10,17 @@ const ChatPage = ({ socket }) => {
     const lastMessageRef = useRef(null);
 
     useEffect(() => {
-        socket.on('messageResponse', (data) => setMessages([...messages, data]));
-    }, [socket, messages]);
+    socket.on('messageResponse', (data) => setMessages(prevMessages => [...prevMessages, data]));
+}, [socket]);
 
-    useEffect(() => {
-        lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages]);
+useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
+}, [messages]);
 
-    useEffect(() => {
-        socket.on('typingResponse', (data) => setTypingStatus(data));
-    }, [socket]);
+useEffect(() => {
+    socket.on('typingResponse', (data) => setTypingStatus(data));
+}, [socket]);
+
 
     return (
         <div className="chat">
